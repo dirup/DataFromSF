@@ -6,7 +6,7 @@ This Microservice is developed using Springboot. Current project structure is th
 
 The main component in this microservice is JavaSFController, this component connects to Salesforce and export the data to local file system.
 
-All the configurable properties in this microservices like username, password, soapAuthEndPoint, bulkAuthEndPoint are maintained in application.properties
+All the configurable properties in this microservices like username, password, soapAuthEndPoint, bulkAuthEndPoint are maintained in application.properties under resources folder
 file, so it is easy to configure them even in runtime and supports loose coupling.
 
 Salesforce java jar is required to connect to Saalesforce using java code.
