@@ -1,5 +1,6 @@
 package com.dirup.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -20,8 +21,14 @@ public class JavaSFController {
 	        private BulkConnection bulkConnection = null;
 	        private static String object = "";
 	        private static String query = "";
-	        private String userId = "USERNAME"; //change to alter login
-	        private String passwd = "PASSWORD";
+	        @Value("${app.username}")
+	        private String username;
+	        @Value("${app.password}")
+	        private String password;
+	        @Value("${app.soapAuthEndPoint}")
+	        private String soapAuthEndPoint;
+	        @Value("${app.bulkAuthEndPoint}")
+	        private String bulkAuthEndPoint;
 	 
 	    public static void get()
 	      throws AsyncApiException, ConnectionException, IOException {
@@ -45,10 +52,6 @@ public class JavaSFController {
 	 
 	    public boolean login() {
 	        boolean success = false;
-	        //change from login to test to move to sandbox and last number is API version being used
-	        String soapAuthEndPoint = "https://test.salesforce.com/services/Soap/u/29.0";
-	        //first part is the header on the url of the org you are pointing this tool at
-	        String bulkAuthEndPoint = "https://cs17-api.salesforce.com/services/async/29.0";
 	        try {
 	          ConnectorConfig config = new ConnectorConfig();
 	          config.setUsername(userId);
